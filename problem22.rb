@@ -1,0 +1,22 @@
+include Enumerable
+
+file = File.readlines("names.txt")
+file_string = file.join("")
+names = file_string.split(",").sort!
+alphabet = ('A'..'Z').to_a
+total = 0
+
+names.each_with_index do |name, i|
+	name_value = 0
+	name_array = name.split("")
+	name_array = name_array.slice(1,name_array.length-2)
+	name_array.each do |letter| 
+		name_value += alphabet.index(letter) + 1
+	end
+	name_value = name_value*(i+1)
+	total += name_value			
+end
+
+puts total
+
+
