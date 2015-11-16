@@ -4,12 +4,17 @@ class Problem
 	def initialize
 		puts "Which file would you like to read from?"
 		input = gets.chomp.downcase
-		file = File.readlines(input)
-		file_string = file.join("")
-		@names = file_string.split(",").sort!
-		@alphabet = ('A'..'Z').to_a
-		@total = 0
-		calculate
+		if File.exist?(input)
+			input_file = File.readlines(input)
+			file_string = input_file.join("")
+			@names = file_string.split(",").sort!
+			@alphabet = ('A'..'Z').to_a
+			@total = 0
+			calculate
+		else
+			puts("Could not find file '#{input}'")
+			initialize
+		end
 	end
 
 	def calculate
@@ -29,4 +34,6 @@ class Problem
 end
 
 Problem.new
+
+
 
